@@ -1,9 +1,9 @@
 const express = require('express');
+const User = require('../models/user')
+const router = express.Router();
 
-const router = express = express.Router();
 
-
-router.post('/api/users', async (req, res) => {
+router.post('/', async (req, res) => {
     const body = req.body;
     if(
         !body ||
@@ -30,31 +30,27 @@ router.post('/api/users', async (req, res) => {
 
 })
 
-router.get('/', (req, res) => {
-    return res.send('hello from server');
-})
 
 
+// router.get('/', async (req, res) => {
+//     const allDbUsers = await User.find({});
+//     const html = `
+//     <ul>
+//     ${allDbUsers.map((user) => `<li>${user.firstName} - ${user.email}</li>`).join('')}
+//     </ul>
+//     `;
+//     res.send(html);
+// }) 
 
-router.get('/users', async (req, res) => {
-    const allDbUsers = await User.find({});
-    const html = `
-    <ul>
-    ${allDbUsers.map((user) => `<li>${user.firstName} - ${user.email}</li>`).join('')}
-    </ul>
-    `;
-    res.send(html);
-}) 
 
-
-router.get('/api/users', async (req, res) => {
+router.get('/', async (req, res) => {
     const allDbUsers = await User.find({});
     return res.json(allDbUsers);
 })
 
 
 
-router.route("/api/users/:id")
+router.route("/:id")
 .get( async(req, res) => {
     const user = await User.findById(req.params.id);
     return res.json(user);
