@@ -12,7 +12,7 @@ router.route
 
 
 
-// router.get('/', async (req, res) => {
+// router.get('/', async (req, res) => { 
 //     const allDbUsers = await User.find({});
 //     const html = `
 //     <ul>
