@@ -2,35 +2,13 @@ const express = require('express');
 const User = require('../models/user')
 const router = express.Router();
 
-const { handleGetAllUsers, handleGetUserById } = require('../controllers/user');
+const { handleGetAllUsers, handleGetUserById, handleUpdateUserById, handleDeleteUserById, handleCreateNewUser } = require('../controllers/user');
 
 
-router.post('/', async (req, res) => {
-    const body = req.body;
-    if(
-        !body ||
-        !body.first_name ||
-        !body.last_name ||
-        !body.email ||
-        !body.gender ||
-        !body.job_title
-    ){
-        return res.status(400).json({ msg: "All fields are required"})
-    }
-
-    const result = await User.create({
-        firstName: body.first_name,
-        lastName: body.last_name,
-        email: body.email,
-        gender: body.gender,
-        jobTitle: body.job_title
-    })
-
-    // console.log('result', result);
-
-    return res.json({ msg: 'success' })
-
-})
+// Create user
+router.route
+.get('/', handleGetAllUsers)
+.post('/', handleCreateNewUser)
 
 
 
@@ -45,23 +23,14 @@ router.post('/', async (req, res) => {
 // }) 
 
 
-router.get('/', handleGetAllUsers);
 
 
 
 
 router.route("/:id")
 .get(handleGetUserById)
-.patch( async (req, res) => {
-    //Edit user with id
-    await User.findByIdAndUpdate(req.params.id, { lastName: 'Updated' });
-    return res.json({ status: "success" })
-})
-.delete( async (req, res) => {
-    //Delete user with id
-    await User.findByIdAndDelete(req.params.id)
-    return res.json({ status: "success" })
-})
+.patch(handleUpdateUserById)
+.delete(handleDeleteUserById)
 
 
 module.exports = router;
