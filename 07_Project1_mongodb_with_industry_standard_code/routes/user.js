@@ -2,6 +2,8 @@ const express = require('express');
 const User = require('../models/user')
 const router = express.Router();
 
+const { handleGetAllUsers, handleGetUserById } = require('../controllers/user');
+
 
 router.post('/', async (req, res) => {
     const body = req.body;
@@ -43,19 +45,13 @@ router.post('/', async (req, res) => {
 // }) 
 
 
-router.get('/', async (req, res) => {
-    const allDbUsers = await User.find({});
-    return res.json(allDbUsers);
-})
+router.get('/', handleGetAllUsers);
 
 
 
 
 router.route("/:id")
-.get( async(req, res) => {
-    const user = await User.findById(req.params.id);
-    return res.json(user);
-})
+.get(handleGetUserById)
 .patch( async (req, res) => {
     //Edit user with id
     await User.findByIdAndUpdate(req.params.id, { lastName: 'Updated' });
