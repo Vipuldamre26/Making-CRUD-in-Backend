@@ -50,6 +50,7 @@ router.get('/', async (req, res) => {
 
 
 
+
 router.route("/:id")
 .get( async(req, res) => {
     const user = await User.findById(req.params.id);
