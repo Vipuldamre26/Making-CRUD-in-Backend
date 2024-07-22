@@ -25,8 +25,6 @@ router.route
 
 
 
-
-
 router.route("/:id")
 .get(handleGetUserById)
 .patch(handleUpdateUserById)
