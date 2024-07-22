@@ -20,6 +20,4 @@ app.use(express.json());
 
 app.use('/url', urlRoute);
 
-
-
 app.listen(PORT, console.log(`server started at ${PORT}`));
