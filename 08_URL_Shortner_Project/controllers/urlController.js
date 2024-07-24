@@ -6,7 +6,7 @@ const ShortUniqueId = require('short-unique-id');
 async function handleGenerateNewShortUrl(req, res) {
     const body = req.body;
     const uid = new ShortUniqueId({ length: 8 });
-    if(!body.url) return res.status(400).json({ error: 'url is required' })
+    if (!body.url) return res.status(400).json({ error: 'url is required' })
     const shortID = uid.rnd();
 
     await URL.create({
@@ -20,21 +20,21 @@ async function handleGenerateNewShortUrl(req, res) {
 
 
 async function handleRedirectURL(req, res) {
-   
-        const shortId = req.params.shortId;
-        const entry = await URL.findOneAndUpdate(
-            {
-                shortId,
-            },
-            {
-                $push: {
-                    visitHistory: {
-                        timestamp: Date.now(),
-                    },
-                }
-            })
-    
-            res.redirect(entry.redirectURL);
+
+    const shortId = req.params.shortId;
+    const entry = await URL.findOneAndUpdate(
+        {
+            shortId,
+        },
+        {
+            $push: {
+                visitHistory: {
+                    timestamp: Date.now(),
+                },
+            }
+        })
+
+    res.redirect(entry.redirectURL);
 }
 
 
