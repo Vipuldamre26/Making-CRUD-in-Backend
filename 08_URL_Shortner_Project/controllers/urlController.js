@@ -34,6 +34,8 @@ async function handleRedirectURL(req, res) {
             }
         })
 
+        console.log(entry);
+
     res.redirect(entry.redirectURL);
 }
 
