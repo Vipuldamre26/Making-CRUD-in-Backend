@@ -22,10 +22,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve("./views"))
 
 
+
 // Middleware
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
+
 
 
 // Routers
