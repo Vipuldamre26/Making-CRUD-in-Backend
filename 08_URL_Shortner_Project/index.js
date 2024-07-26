@@ -1,8 +1,10 @@
 const express = require('express');
 const urlRoute = require('./routes/urlRouter');
+const staticRoute = require('./routes/staticRouter');
 const { connectToMongoDB } = require('./connect');
 const URL = require('./models/url');
 const { handleRedirectURL } = require('./controllers/urlController');
+const path = require('path');
 
 const app = express();
 const PORT = 8001;
@@ -17,21 +19,19 @@ connectToMongoDB('mongodb://127.0.0.1:27017/short-url')
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+app.set('views', path.resolve("./views"))
 
 
 // Middleware
 
 app.use(express.json());
 
+
 // Routers
-
-app.use('/test', (req, res) => {
-    res.end('<h1>Hello from server</h1>');
-})
-
 
 app.use('/url', urlRoute);
 app.get('/url/:shortId', handleRedirectURL);
+app.use('/', staticRoute);
 
 
 app.listen(PORT, console.log(`server started at ${PORT}`));
