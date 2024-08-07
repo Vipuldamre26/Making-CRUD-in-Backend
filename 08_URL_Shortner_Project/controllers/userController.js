@@ -9,7 +9,7 @@ async function handleUserSignup(req, res) {
     });
 
     return res.render('home');
-    
+
 }
 
 module.exports = {

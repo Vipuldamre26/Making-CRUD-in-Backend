@@ -29,13 +29,14 @@ app.set('views', path.resolve("./views"))
 // Middleware
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 
 
 // Routers
 
 app.use('/url', urlRoute);
+// app.use('/user', userRoute);
 app.get('/url/:shortId', handleRedirectURL);
 app.use('/', staticRoute);
 
