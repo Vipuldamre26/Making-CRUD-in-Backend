@@ -1,6 +1,9 @@
 const express = require('express');
+
 const urlRoute = require('./routes/urlRouter');
 const staticRoute = require('./routes/staticRouter');
+const userRoute = require('./controllers/userController');
+
 const { connectToMongoDB } = require('./connect');
 const URL = require('./models/url');
 const { handleRedirectURL } = require('./controllers/urlController');
