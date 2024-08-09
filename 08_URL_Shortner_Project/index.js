@@ -8,6 +8,7 @@ const { connectToMongoDB } = require('./connect');
 const URL = require('./models/url');
 const { handleRedirectURL } = require('./controllers/urlController');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = 8001;
@@ -30,7 +31,7 @@ app.set('views', path.resolve("./views"))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-
+app.use(cookieParser());
 
 
 // Routers
