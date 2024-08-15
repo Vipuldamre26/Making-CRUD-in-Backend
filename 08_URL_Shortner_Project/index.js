@@ -9,6 +9,8 @@ const URL = require('./models/url');
 const { handleRedirectURL } = require('./controllers/urlController');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const { restrictToLoggedinUserOnly } = require('./middlewares/auth')
+
 
 const app = express();
 const PORT = 8001;
@@ -36,9 +38,8 @@ app.use(cookieParser());
 
 // Routers
 
-app.use('/url', urlRoute);
+app.use('/url', restrictToLoggedinUserOnly, urlRoute);
 app.use('/user', userRoute);
-app.get('/url/:shortId', handleRedirectURL);
 app.use('/', staticRoute);
 
 
