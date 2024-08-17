@@ -5,8 +5,6 @@ const staticRoute = require('./routes/staticRouter');
 const userRoute = require('./routes/user');
 
 const { connectToMongoDB } = require('./connect');
-const URL = require('./models/url');
-const { handleRedirectURL } = require('./controllers/urlController');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const { restrictToLoggedinUserOnly } = require('./middlewares/auth')
