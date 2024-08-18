@@ -7,7 +7,7 @@ const userRoute = require('./routes/user');
 const { connectToMongoDB } = require('./connect');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { restrictToLoggedinUserOnly } = require('./middlewares/auth')
+const { restrictToLoggedinUserOnly, checkAuth } = require('./middlewares/auth')
 
 
 const app = express();
@@ -34,11 +34,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
 
 
+
 // Routers
 
 app.use('/url', restrictToLoggedinUserOnly, urlRoute);
 app.use('/user', userRoute);
-app.use('/', staticRoute);
+app.use('/', checkAuth, staticRoute);
 
 
 app.listen(PORT, console.log(`server started at ${PORT}`));
