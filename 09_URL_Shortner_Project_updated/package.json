@@ -1,0 +1,21 @@
+{
+  "name": "09_url_shortner_project_updated",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3",
+    "nanoid": "^5.0.7",
+    "nodemon": "^3.1.4",
+    "short-unique-id": "^5.2.0",
+    "uuid": "^10.0.0"
+  }
+}
