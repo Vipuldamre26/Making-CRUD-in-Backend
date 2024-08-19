@@ -11,7 +11,7 @@ const { restrictToLoggedinUserOnly, checkAuth } = require('./middlewares/auth')
 
 
 const app = express();
-const PORT = 8001;
+const PORT = 8080;
 
 
 // Connections 
