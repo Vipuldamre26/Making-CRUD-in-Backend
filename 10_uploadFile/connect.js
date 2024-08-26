@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 async function dbConnection(url) {
-    return await mongoose.connect();
+    return mongoose.connect(url);
 }
 
 
